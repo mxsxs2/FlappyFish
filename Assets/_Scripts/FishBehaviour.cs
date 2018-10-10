@@ -74,4 +74,20 @@ public class FishBehaviour : MonoBehaviour {
             rb.gravityScale = originalGvaity;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // need to determin the type of "collision"
+        var seaWeed = collision.GetComponent<SeaWeed>();
+        if (seaWeed)
+        {
+            Debug.Log("hit seaweed");
+
+        }
+        else
+        {
+            Debug.Log("hit something else");
+        }
+    }
+
 }
