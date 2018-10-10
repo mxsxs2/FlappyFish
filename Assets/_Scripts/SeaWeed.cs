@@ -58,6 +58,17 @@ public class Seaweed : MonoBehaviour
 
     void Update()
     {
+        //Generate the line and points
+        GeneratePoints();
+        //Remove the seaweed if not wisible anymore
+        DestroyIfNotVisible();
+    }
+
+    /// <summary>
+    /// Generates the points for the line and polygon and sets them.
+    /// </summary>
+    private void GeneratePoints()
+    {
         //Array of positions on the line
         Vector2[] points = new Vector2[length];
         //Set start
@@ -70,7 +81,7 @@ public class Seaweed : MonoBehaviour
             float sinX = Mathf.Sin(i + Time.time) / 2;
 
             //Generate vector for the line. Transform position has to be added, otherwise it is always in the middle
-            Vector2 pos = new Vector2((flipUpsideDown? sinX*-1 : sinX) + transform.position.x, i * 0.5F + transform.position.y);
+            Vector2 pos = new Vector2((flipUpsideDown ? sinX * -1 : sinX) + transform.position.x, i * 0.5F + transform.position.y);
             //Add the point to the line renderer
             lineRenderer.SetPosition(i, pos);
             //Add to the points array. Without transform posotion.
@@ -79,6 +90,16 @@ public class Seaweed : MonoBehaviour
         }
         //Add points to the collider
         polygonCollider.SetPath(0, points);
+    }
 
+    /// <summary>
+    /// Destroy this game object if it is not wisible anymore
+    /// </summary>
+    private void DestroyIfNotVisible()
+    {
+        //Get the bound of the screen
+        Vector2 screenBound = Camera.main.ScreenToWorldPoint(Vector2.zero);
+        if (transform.position.x< screenBound.x)
+            Destroy(gameObject);
     }
 }
