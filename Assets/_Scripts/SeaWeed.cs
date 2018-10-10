@@ -6,7 +6,7 @@ public class Seaweed : MonoBehaviour
 {
     [SerializeField]
     //Base length of the sea weed
-    private int length = 10;
+    public float baseLength = 8;
     [SerializeField]
     //Wether or not the seaweed is at the bottom or at the top of the screen
     public bool flipUpsideDown = false;
@@ -16,7 +16,7 @@ public class Seaweed : MonoBehaviour
     //Thick part of the weed
     private float maxWidth = 0.2f;
     //Skinny part of the weed
-    private float miWidth = 0.03f;
+    private float minWidth = 0.03f;
     //Collider of the prefab
     PolygonCollider2D polygonCollider;
 
@@ -39,8 +39,7 @@ public class Seaweed : MonoBehaviour
         //Set gradient
         lineRenderer.colorGradient = gradient;
 
-        //Add length
-        lineRenderer.positionCount = length;
+
 
         //Get the collider
         polygonCollider = lineRenderer.gameObject.AddComponent<PolygonCollider2D>();
@@ -52,12 +51,14 @@ public class Seaweed : MonoBehaviour
     void Start()
     {
         //Set width
-        lineRenderer.startWidth = flipUpsideDown ? maxWidth : miWidth;
-        lineRenderer.endWidth = flipUpsideDown ? miWidth : maxWidth;
+        lineRenderer.startWidth = maxWidth;
+        lineRenderer.endWidth = minWidth;   
     }
 
     void Update()
     {
+        //Add length
+        lineRenderer.positionCount = (int)Mathf.Ceil(baseLength);
         //Generate the line and points
         GeneratePoints();
         //Remove the seaweed if not wisible anymore
@@ -70,22 +71,22 @@ public class Seaweed : MonoBehaviour
     private void GeneratePoints()
     {
         //Array of positions on the line
-        Vector2[] points = new Vector2[length];
+        Vector2[] points = new Vector2[(int)Mathf.Ceil(baseLength)];
         //Set start
         int i = 0;
         //Set run until the length
-        while (i < length)
+        while (i < baseLength)
         {
 
             //Generate sin
             float sinX = Mathf.Sin(i + Time.time) / 2;
 
             //Generate vector for the line. Transform position has to be added, otherwise it is always in the middle
-            Vector2 pos = new Vector2((flipUpsideDown ? sinX * -1 : sinX) + transform.position.x, i * 0.5F + transform.position.y);
+            Vector2 pos = new Vector2((flipUpsideDown ? sinX * -1 : sinX) + transform.position.x, (flipUpsideDown ? i * -1 : i) * 0.5F + transform.position.y);
             //Add the point to the line renderer
             lineRenderer.SetPosition(i, pos);
             //Add to the points array. Without transform posotion.
-            points[i] = new Vector2(flipUpsideDown ? sinX * -1 : sinX, i * 0.5F);
+            points[i] = new Vector2((flipUpsideDown ? sinX * -1 : sinX), (flipUpsideDown ? i * -1 : i) * 0.5F);
             i++;
         }
         //Add points to the collider
@@ -99,7 +100,7 @@ public class Seaweed : MonoBehaviour
     {
         //Get the bound of the screen
         Vector2 screenBound = Camera.main.ScreenToWorldPoint(Vector2.zero);
-        if (transform.position.x< screenBound.x)
+        if (transform.position.x < screenBound.x)
             Destroy(gameObject);
     }
 }

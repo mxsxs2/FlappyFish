@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 225590123}
   - component: {fileID: 225590122}
   m_Layer: 0
-  m_Name: SeaWeedSpawnPointTop
+  m_Name: SeaWeedSpawnPointBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
   spawnInterval: 1.3
   seaweedPrefab: {fileID: 114536496390629402, guid: 55ae2b4def780714faf156f6f0886d7e,
     type: 2}
-  scrollStartSpeed: 2
   flipSeaweeds: 0
+  defaultSize: 8
 --- !u!114 &225590123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,12 +164,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 225590121}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.18, y: 0.53, z: -0.12479385}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.6426907, y: -3.8568769, z: -0.062466867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+  m_Father: {fileID: 830259730}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &281751436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281751438}
+  - component: {fileID: 281751437}
+  m_Layer: 0
+  m_Name: GamePlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &281751437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281751436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50d9948c41361c4f9ee9adaa2b98709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSpeed: 2
+--- !u!4 &281751438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281751436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.23, y: -1.14, z: -0.062326983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 830259730}
+  - {fileID: 805288669}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &383635012
 GameObject:
@@ -182,7 +225,7 @@ GameObject:
   - component: {fileID: 383635014}
   - component: {fileID: 383635013}
   m_Layer: 0
-  m_Name: SeaWeedSpawnPointBottom
+  m_Name: SeaWeedSpawnPointTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,8 +246,8 @@ MonoBehaviour:
   spawnInterval: 1.3
   seaweedPrefab: {fileID: 114536496390629402, guid: 55ae2b4def780714faf156f6f0886d7e,
     type: 2}
-  scrollStartSpeed: 2
   flipSeaweeds: 1
+  defaultSize: 8
 --- !u!114 &383635014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,12 +265,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 383635012}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.23, y: -5.16, z: -0.12479385}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.62269, y: 6.093123, z: -0.062466867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 830259730}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -306,36 +349,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &805288669 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699,
+    type: 2}
+  m_PrefabInternal: {fileID: 1499240124}
+--- !u!1 &830259729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 830259730}
+  - component: {fileID: 830259731}
+  m_Layer: 0
+  m_Name: SeaweedSpawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &830259730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 830259729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.09, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 225590124}
+  - {fileID: 383635015}
+  m_Father: {fileID: 281751438}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &830259731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 830259729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9673eea0f297fa1498e7cad4b653b0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verticalGap: 5
+  horizontalGap: 1
+  scrollSpeed: 3
 --- !u!1001 &1499240124
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 281751438}
     m_Modifications:
     - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.3173093
       objectReference: {fileID: 0}
     - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.0931231
       objectReference: {fileID: 0}
     - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.062326983
       objectReference: {fileID: 0}
     - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
       propertyPath: m_LocalRotation.w
@@ -344,6 +437,29 @@ Prefab:
     - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238897825275592, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 50596370456924012, guid: bf8b6bc64214ac14d8b5a660b93cd699,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114026389856659796, guid: bf8b6bc64214ac14d8b5a660b93cd699,
+        type: 2}
+      propertyPath: velocity
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114732231058170400, guid: bf8b6bc64214ac14d8b5a660b93cd699,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}

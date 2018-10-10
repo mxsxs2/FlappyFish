@@ -17,10 +17,14 @@ public class SeaweedSpawner : MonoBehaviour
     private Seaweed seaweedPrefab;
     [SerializeField]
     private bool flipSeaweeds = false;
+    [SerializeField]
+    private float defaultSize = 8f;
     //Container for the seaweeds
     private GameObject seaweedParent;
     //The parent game object
     private GameObject spawnerParent;
+    //Internal timer for spawning
+    private float timer=0;
     // Use this for initialization
     void Start()
     {
@@ -37,13 +41,23 @@ public class SeaweedSpawner : MonoBehaviour
         SpawnRepeating();
     }
 
+    void Update()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            timer = GetHorizontalGap();
+            Spawn();
+        }
+    }
+
     /// <summary>
     /// Keep repeating the spawn method
     /// </summary>
     private void SpawnRepeating()
     {
         //Invoke spawn method periodically
-        InvokeRepeating(SPWAN_METHOD, spawnDelay, spawnInterval);
+        //InvokeRepeating(SPWAN_METHOD, spawnDelay, GetHorizontalGap());
     }
 
     /// <summary>
@@ -59,6 +73,9 @@ public class SeaweedSpawner : MonoBehaviour
         if (flipSeaweeds) obj.flipUpsideDown = true;
         //Set scrolling speed
         obj.GetComponent<Scrolling>().scrollingSpeed = GetNewScrollSpeed();
+        //Set size
+        obj.GetComponent<Seaweed>().baseLength = defaultSize+(flipSeaweeds ? GetVerticalGap() * -1 : GetVerticalGap());
+
         UpdateScrollSpeedOfSpawnedSeaweeds();
     }
     /// <summary>
@@ -85,5 +102,23 @@ public class SeaweedSpawner : MonoBehaviour
         //Get scrolling field from parent
         SeaweedSpawnPointsBehaviour behaviour = spawnerParent.GetComponent<SeaweedSpawnPointsBehaviour>();
         return behaviour.GetScrollSpeed();
+    }
+
+    /// <summary>
+    /// Gets the vertical gap from the parent and returns it
+    /// </summary>
+    /// <returns>Seaweed size</returns>
+    private float GetVerticalGap()
+    {
+        //Get gap field from parent
+        SeaweedSpawnPointsBehaviour behaviour = spawnerParent.GetComponent<SeaweedSpawnPointsBehaviour>();
+        return behaviour.GetRandomVerticalGap();
+    }
+
+    private float GetHorizontalGap()
+    {
+        //Get gap field from parent
+        SeaweedSpawnPointsBehaviour behaviour = spawnerParent.GetComponent<SeaweedSpawnPointsBehaviour>();
+        return behaviour.GetHorizontalGap();
     }
 }
