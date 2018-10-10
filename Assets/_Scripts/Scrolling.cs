@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Scrolling : MonoBehaviour {
+public class Scrolling : MonoBehaviour
+{
 
     [SerializeField]
-    //Falling speed
-    public float speed = 2f;
+    //Scrolling speed
+    public float scrollingSpeed = 2f;
     //The object that falls    
     private Rigidbody2D rb;
     void Start()
@@ -18,7 +19,7 @@ public class Scrolling : MonoBehaviour {
     private void FixedUpdate()
     {
         //Make the object go left on every frame
-        rb.velocity = Vector2.left * speed;
+        rb.velocity = Vector2.left * scrollingSpeed;
 
     }
 }

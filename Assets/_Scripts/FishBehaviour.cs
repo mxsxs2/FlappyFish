@@ -78,8 +78,8 @@ public class FishBehaviour : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // need to determin the type of "collision"
-        var seaWeed = collision.GetComponent<SeaWeed>();
-        if (seaWeed)
+        var seaweed = collision.GetComponent<Seaweed>();
+        if (seaweed)
         {
             Debug.Log("hit seaweed");
 

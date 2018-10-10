@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeaWeed : MonoBehaviour
+public class Seaweed : MonoBehaviour
 {
     [SerializeField]
     //Base length of the sea weed
@@ -38,9 +38,7 @@ public class SeaWeed : MonoBehaviour
             );
         //Set gradient
         lineRenderer.colorGradient = gradient;
-        //Set width
-        lineRenderer.startWidth = flipUpsideDown ? maxWidth : miWidth;
-        lineRenderer.endWidth = flipUpsideDown ? miWidth : maxWidth;
+
         //Add length
         lineRenderer.positionCount = length;
 
@@ -49,6 +47,13 @@ public class SeaWeed : MonoBehaviour
         polygonCollider.isTrigger = true;
         //Set the path size
         polygonCollider.pathCount = 1;
+    }
+
+    void Start()
+    {
+        //Set width
+        lineRenderer.startWidth = flipUpsideDown ? maxWidth : miWidth;
+        lineRenderer.endWidth = flipUpsideDown ? miWidth : maxWidth;
     }
 
     void Update()
@@ -60,12 +65,16 @@ public class SeaWeed : MonoBehaviour
         //Set run until the length
         while (i < length)
         {
+
+            //Generate sin
+            float sinX = Mathf.Sin(i + Time.time) / 2;
+
             //Generate vector for the line. Transform position has to be added, otherwise it is always in the middle
-            Vector2 pos = new Vector2(Mathf.Sin(i + Time.time) / 2+transform.position.x, i * 0.5F + transform.position.y);
+            Vector2 pos = new Vector2((flipUpsideDown? sinX*-1 : sinX) + transform.position.x, i * 0.5F + transform.position.y);
             //Add the point to the line renderer
             lineRenderer.SetPosition(i, pos);
             //Add to the points array. Without transform posotion.
-            points[i] = new Vector2(Mathf.Sin(i + Time.time) / 2, i * 0.5F);
+            points[i] = new Vector2(flipUpsideDown ? sinX * -1 : sinX, i * 0.5F);
             i++;
         }
         //Add points to the collider

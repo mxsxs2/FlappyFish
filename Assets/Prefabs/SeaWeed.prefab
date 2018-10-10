@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50833241233500748}
   - component: {fileID: 114296498799056256}
   m_Layer: 0
-  m_Name: SeaWeed
+  m_Name: Seaweed
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f9d09f5b728634c8053fc248ebc8c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  scrollingSpeed: 2
 --- !u!114 &114536496390629402
 MonoBehaviour:
   m_ObjectHideFlags: 1
