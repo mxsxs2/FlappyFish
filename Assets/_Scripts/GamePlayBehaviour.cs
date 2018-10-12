@@ -14,29 +14,36 @@ public class GamePlayBehaviour : MonoBehaviour
     //The spawnerparent game object
     private GameObject spawnerParent;
     [SerializeField]
-    //the fish
-    private GameObject fish;
-    //Container of the seaweeds
-    private GameObject seaweedParent;
     //Game score
     private int gameScore = 0;
-    
-    
+    //Hoizontal gap between spawning
+    private Dictionary<int, float> horizontalGaps;
+
     //Game Play events
     public static int GameSpeedChanged;
 
-
+    void Awake()
+    {
+        //Map the speed to the gap. Tryed to keep kind of even.
+        horizontalGaps = new Dictionary<int, float>
+        {
+            { 1, 4 },
+            { 2, 2.8f },
+            { 3, 2 },
+            { 4, 1.7f },
+            { 5, 1.4f },
+            { 6, 1.1f },
+            { 7, 0.9f },
+            { 8, 0.8f },
+            { 9, 0.7f },
+            { 10, 0.6f }
+        };
+    }
 
     // Use this for initialization
     void Start()
     {
-        //Check if there is a parent object
-        seaweedParent = GameObject.Find(SEAWEED_PARENT_NAME);
-        if (!seaweedParent)
-        {
-            //Create one if there was not
-            seaweedParent = new GameObject(SEAWEED_PARENT_NAME);
-        }
+
     }
 
     // Update is called once per frame
@@ -72,13 +79,19 @@ public class GamePlayBehaviour : MonoBehaviour
         {
             //Increase score
             gameScore += 1;
+            Debug.Log("Score: " + gameScore);
             //Check if score can should be increased
-            if(gameScore%10==0 && gameScore < 11)
+            if(gameScore%10==0 && gameSpeed < 11)
             {
                 //Increase the speed
                 gameSpeed += 1;
             }
         }
+    }
+
+    public float GetHorizontalGap()
+    {
+        return horizontalGaps[gameSpeed];
     }
 
 }

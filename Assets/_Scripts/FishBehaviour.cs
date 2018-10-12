@@ -92,14 +92,12 @@ public class FishBehaviour : MonoBehaviour {
         var seaweed = collision.GetComponent<Seaweed>();
         if (seaweed)
         {
-            Debug.Log("hit seaweed");
             PublishFishCollisionEvent(FishCollisionEvents.FISHHIT);
             return;
         }
         var score = collision.GetComponent<ScoreLineBehaviour>();
         if (score)
         {
-            Debug.Log("hit score line");
             PublishFishCollisionEvent(FishCollisionEvents.SCOREHIT);
         }
     }
