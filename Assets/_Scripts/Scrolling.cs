@@ -20,6 +20,5 @@ public class Scrolling : MonoBehaviour
     {
         //Make the object go left on every frame
         rb.velocity = Vector2.left * scrollingSpeed;
-
     }
 }

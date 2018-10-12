@@ -61,8 +61,6 @@ public class Seaweed : MonoBehaviour
         lineRenderer.positionCount = (int)Mathf.Ceil(baseLength);
         //Generate the line and points
         GeneratePoints();
-        //Remove the seaweed if not wisible anymore
-        DestroyIfNotVisible();
     }
 
     /// <summary>
@@ -93,14 +91,4 @@ public class Seaweed : MonoBehaviour
         polygonCollider.SetPath(0, points);
     }
 
-    /// <summary>
-    /// Destroy this game object if it is not wisible anymore
-    /// </summary>
-    private void DestroyIfNotVisible()
-    {
-        //Get the bound of the screen
-        Vector2 screenBound = Camera.main.ScreenToWorldPoint(Vector2.zero);
-        if (transform.position.x < screenBound.x)
-            Destroy(gameObject);
-    }
 }

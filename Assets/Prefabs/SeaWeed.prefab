@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114536496390629402}
   - component: {fileID: 50833241233500748}
   - component: {fileID: 114296498799056256}
+  - component: {fileID: 114736268175592332}
   m_Layer: 0
   m_Name: Seaweed
   m_TagString: Untagged
@@ -85,6 +86,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766fbe25afe9aef4b8f58b622add6ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 10
+  baseLength: 8
   flipUpsideDown: 0
   lineRenderer: {fileID: 0}
+--- !u!114 &114736268175592332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1808998170435104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b76347ac51b7354fbfc84e15d2005ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

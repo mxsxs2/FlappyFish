@@ -82,11 +82,12 @@ public class FishBehaviour : MonoBehaviour {
         if (seaweed)
         {
             Debug.Log("hit seaweed");
-
+            return;
         }
-        else
+        var score = collision.GetComponent<ScoreLineBehaviour>();
+        if (score)
         {
-            Debug.Log("hit something else");
+            Debug.Log("hit score line");
         }
     }
 

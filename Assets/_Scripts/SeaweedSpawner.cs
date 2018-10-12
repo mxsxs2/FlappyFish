@@ -10,10 +10,6 @@ public class SeaweedSpawner : MonoBehaviour
     private const string SPAWNER_PARENT = "SeaweedSpawners";
 
     [SerializeField]
-    private float spawnDelay = 0.5f;
-    [SerializeField]
-    private float spawnInterval = 1.3f;
-    [SerializeField]
     private Seaweed seaweedPrefab;
     [SerializeField]
     private bool flipSeaweeds = false;
