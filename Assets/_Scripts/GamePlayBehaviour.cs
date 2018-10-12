@@ -19,8 +19,10 @@ public class GamePlayBehaviour : MonoBehaviour
     //Hoizontal gap between spawning
     private Dictionary<int, float> horizontalGaps;
 
-    //Game Play events
-    public static int GameSpeedChanged;
+    //GameSpeedChangeEvent handlers
+    public delegate void GameSpeedChange(int speed);
+    //GameSpeedChange event collision event
+    public static GameSpeedChange GameSpeedChangeEvent;
 
     void Awake()
     {
@@ -85,6 +87,7 @@ public class GamePlayBehaviour : MonoBehaviour
             {
                 //Increase the speed
                 gameSpeed += 1;
+                PublishGameSpeedChange();
             }
         }
     }
@@ -92,6 +95,15 @@ public class GamePlayBehaviour : MonoBehaviour
     public float GetHorizontalGap()
     {
         return horizontalGaps[gameSpeed];
+    }
+
+    private void PublishGameSpeedChange()
+    {
+        if (GameSpeedChangeEvent != null)
+        {
+            GameSpeedChangeEvent(gameSpeed);
+        }
+
     }
 
 }

@@ -21,4 +21,22 @@ public class Scrolling : MonoBehaviour
         //Make the object go left on every frame
         rb.velocity = Vector2.left * scrollingSpeed;
     }
+
+    private void OnEnable()
+    {
+        GamePlayBehaviour.GameSpeedChangeEvent += HandleFGameSpeedChange;
+    }
+    private void OnDisable()
+    {
+        GamePlayBehaviour.GameSpeedChangeEvent -= HandleFGameSpeedChange;
+    }
+
+    /// <summary>
+    /// Handles game speed change
+    /// </summary>
+    /// <param name="e">Event type</param>
+    private void HandleFGameSpeedChange(int speed)
+    {
+        scrollingSpeed=speed;
+    }
 }

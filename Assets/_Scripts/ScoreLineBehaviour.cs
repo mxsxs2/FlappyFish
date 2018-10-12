@@ -19,12 +19,6 @@ public class ScoreLineBehaviour : MonoBehaviour {
         init();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void init()
     {
         //Get the collider

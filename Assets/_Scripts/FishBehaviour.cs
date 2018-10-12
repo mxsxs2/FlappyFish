@@ -20,7 +20,7 @@ public class FishBehaviour : MonoBehaviour {
     //Offset of fish
     private float fishOffset;
     
-    //  FishCollisionEvent handlers
+    //FishCollisionEvent handlers
     public delegate void FishCollision(FishCollisionEvents e);
     //Fish collision event
     public static FishCollision FishCollisionEvent;

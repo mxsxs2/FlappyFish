@@ -6,7 +6,7 @@ public class Seaweed : MonoBehaviour
 {
     [SerializeField]
     //Base length of the sea weed
-    public float baseLength = 8;
+    public float baseLength = 6;
     [SerializeField]
     //Wether or not the seaweed is at the bottom or at the top of the screen
     public bool flipUpsideDown = false;

@@ -2,102 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeaweedSpawner : MonoBehaviour
+public class SeaweedSpawner : SpawnPointBehaviour
 {
 
-    private const string SPWAN_METHOD = "Spawn";
-    private const string SEAWEED_PARENT_NAME = "Seaweeds";
+    private const string PARENT_NAME = "Seaweeds";
     private const string SPAWNER_PARENT = "SeaweedSpawners";
-
-    [SerializeField]
-    private Seaweed seaweedPrefab;
     [SerializeField]
     private bool flipSeaweeds = false;
-    [SerializeField]
-    private float defaultSize = 8f;
-    //Container for the seaweeds
-    private GameObject seaweedParent;
-    //The parent game object
-    private GameObject spawnerParent;
-    //Internal timer for spawning
-    private float timer=0;
+    //Get the screen boundaries
+    private Vector2 screenTop;
+    private Vector2 screenBottom;
+
     // Use this for initialization
     void Start()
     {
-        //Check if there is a parent object
-        seaweedParent = GameObject.Find(SEAWEED_PARENT_NAME);
-        if (!seaweedParent)
-        {
-            //Create one if there was not
-            seaweedParent = new GameObject(SEAWEED_PARENT_NAME);
-        }
-        spawnerParent = GameObject.Find(SPAWNER_PARENT);
+        //Get the top of the screen
+        screenTop = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        //Get the bottom of the screen
+        screenBottom = Camera.main.ScreenToWorldPoint(Vector2.zero);
 
-        //Start spawning
-        SpawnRepeating();
-    }
-
-    void Update()
-    {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-            timer = GetHorizontalGap();
-            Spawn();
-        }
-    }
-
-    /// <summary>
-    /// Keep repeating the spawn method
-    /// </summary>
-    private void SpawnRepeating()
-    {
-        //Invoke spawn method periodically
-        //InvokeRepeating(SPWAN_METHOD, spawnDelay, GetHorizontalGap());
+        CreateSpawnerContainer();
     }
 
     /// <summary>
     /// Spawns a new seaweed
     /// </summary>
-    private void Spawn()
+    protected override void Spawn()
     {
         //Get a new seaweed instance
-        var obj = Instantiate(seaweedPrefab, seaweedParent.transform);
+        var obj = Instantiate(spawnablePrefab, spawnedContainer.transform);
         //Set the position to the parent
         obj.transform.position = transform.position;
-        //Flip the seaweed if needed
-        if (flipSeaweeds) obj.flipUpsideDown = true;
         //Set scrolling speed
         obj.GetComponent<Scrolling>().scrollingSpeed = GetNewScrollSpeed();
+        //Flip the seaweed if needed
+        Seaweed component= obj.GetComponent<Seaweed>();
+        if (flipSeaweeds) component.flipUpsideDown = true;
         //Set size
-        obj.GetComponent<Seaweed>().baseLength = defaultSize+(flipSeaweeds ? GetVerticalGap() * -1 : GetVerticalGap());
-
-        UpdateScrollSpeedOfSpawnedSeaweeds();
+        component.baseLength = (screenTop.y-screenBottom.y)-2 + (flipSeaweeds ? GetVerticalGap() * -1 : GetVerticalGap());
     }
-    /// <summary>
-    /// Updates every seaweeds's speed which are spawned by this spawner
-    /// </summary>
-    private void UpdateScrollSpeedOfSpawnedSeaweeds()
+
+    protected override void CreateSpawnerContainer()
     {
-        //Get all the spawned seaweeds
-        Seaweed[] seaweeds = seaweedParent.GetComponentsInChildren<Seaweed>();
-        //Loop the seaweeds
-        for (int i = 0; i < seaweeds.Length; i++)
+        //Check if there is a parent object
+        spawnedContainer = GameObject.Find(PARENT_NAME);
+        if (!spawnedContainer)
         {
-            //Set the new speed to it
-            seaweeds[i].GetComponent<Scrolling>().scrollingSpeed = GetNewScrollSpeed();
+            //Create one if there was not
+            spawnedContainer = new GameObject(PARENT_NAME);
         }
-    }
-
-    /// <summary>
-    /// Gets the scrolling speed from the parent and returns it
-    /// </summary>
-    /// <returns>Scroll speed</returns>
-    private float GetNewScrollSpeed()
-    {
-        //Get game speed
-        GamePlayBehaviour behaviour = GameObject.Find("GamePlay").GetComponent<GamePlayBehaviour>();
-        return behaviour.GetGameSpeed();
     }
 
     /// <summary>
@@ -107,14 +60,8 @@ public class SeaweedSpawner : MonoBehaviour
     private float GetVerticalGap()
     {
         //Get gap field from parent
-        SeaweedSpawnPointsBehaviour behaviour = spawnerParent.GetComponent<SeaweedSpawnPointsBehaviour>();
+        SeaweedSpawnPointsBehaviour behaviour = GameObject.Find(SPAWNER_PARENT).GetComponent<SeaweedSpawnPointsBehaviour>();
         return behaviour.GetRandomVerticalGap();
     }
 
-    private float GetHorizontalGap()
-    {
-        //Get gap field from parent
-        GamePlayBehaviour behaviour = GameObject.Find("GamePlay").GetComponent<GamePlayBehaviour>();
-        return behaviour.GetHorizontalGap();
-    }
 }

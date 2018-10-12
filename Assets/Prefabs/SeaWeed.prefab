@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766fbe25afe9aef4b8f58b622add6ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseLength: 8
+  baseLength: 4
   flipUpsideDown: 0
   lineRenderer: {fileID: 0}
 --- !u!114 &114736268175592332
