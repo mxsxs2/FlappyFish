@@ -4,6 +4,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class FishBehaviour : MonoBehaviour {
+    public enum FishCollisionEvents
+    {
+        FISHHIT,
+        SCOREHIT
+    }
+
     //Get the screen boundaries
     private Vector2 screenTop;
     private Vector2 ScreenBottom;
@@ -13,6 +19,11 @@ public class FishBehaviour : MonoBehaviour {
     private float originalGvaity;
     //Offset of fish
     private float fishOffset;
+    
+    //  FishCollisionEvent handlers
+    public delegate void FishCollision(FishCollisionEvents e);
+    //Fish collision event
+    public static FishCollision FishCollisionEvent;
 
     void Start () {
         // Get the current object
@@ -82,13 +93,25 @@ public class FishBehaviour : MonoBehaviour {
         if (seaweed)
         {
             Debug.Log("hit seaweed");
+            PublishFishCollisionEvent(FishCollisionEvents.FISHHIT);
             return;
         }
         var score = collision.GetComponent<ScoreLineBehaviour>();
         if (score)
         {
             Debug.Log("hit score line");
+            PublishFishCollisionEvent(FishCollisionEvents.SCOREHIT);
         }
     }
+
+    private void PublishFishCollisionEvent(FishCollisionEvents e)
+    {
+        if (FishCollisionEvent != null)
+        {
+            FishCollisionEvent(e);
+        }
+
+    }
+
 
 }

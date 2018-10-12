@@ -19,7 +19,7 @@ public class GamePlayBehaviour : MonoBehaviour
     //Container of the seaweeds
     private GameObject seaweedParent;
     //Game score
-    private int score = 0;
+    private int gameScore = 0;
     
     
     //Game Play events
@@ -49,6 +49,36 @@ public class GamePlayBehaviour : MonoBehaviour
     public float GetGameSpeed()
     {
         return gameSpeed;
+    }
+
+
+    private void OnEnable()
+    {
+        FishBehaviour.FishCollisionEvent += HandleFishCollision;
+    }
+    private void OnDisable()
+    {
+        FishBehaviour.FishCollisionEvent -= HandleFishCollision;
+    }
+
+    /// <summary>
+    /// Handles the fish collision events
+    /// </summary>
+    /// <param name="e">Event type</param>
+    private void HandleFishCollision(FishBehaviour.FishCollisionEvents e)
+    {
+        //Check if its a score hit
+        if (e == FishBehaviour.FishCollisionEvents.SCOREHIT)
+        {
+            //Increase score
+            gameScore += 1;
+            //Check if score can should be increased
+            if(gameScore%10==0 && gameScore < 11)
+            {
+                //Increase the speed
+                gameSpeed += 1;
+            }
+        }
     }
 
 }
