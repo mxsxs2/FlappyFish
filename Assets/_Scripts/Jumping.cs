@@ -18,7 +18,7 @@ public class Jumping : MonoBehaviour {
 
 	void FixedUpdate() {
         //Get space key
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount == 1)
         {
             //Reset the velocity so the force is never adde more than once a.k.a the fish not going to go mad high on quick space press
             rb.velocity = Vector2.zero;

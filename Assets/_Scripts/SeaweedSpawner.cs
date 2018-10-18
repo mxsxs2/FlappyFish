@@ -50,6 +50,7 @@ public class SeaweedSpawner : SpawnPointBehaviour
         {
             //Create one if there was not
             spawnedContainer = new GameObject(PARENT_NAME);
+            spawnedContainer.transform.parent = GameObject.Find(SPAWNER_PARENT).transform;
         }
     }
 

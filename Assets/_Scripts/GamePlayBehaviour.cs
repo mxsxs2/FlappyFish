@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GamePlayBehaviour : MonoBehaviour
 {
@@ -81,6 +82,8 @@ public class GamePlayBehaviour : MonoBehaviour
         {
             //Increase score
             gameScore += 1;
+            //Add score to score text
+            GameObject.Find("Score").GetComponent<Text>().text = "Score: "+gameScore;
             Debug.Log("Score: " + gameScore);
             //Check if score can should be increased
             if(gameScore%10==0 && gameSpeed < 11)

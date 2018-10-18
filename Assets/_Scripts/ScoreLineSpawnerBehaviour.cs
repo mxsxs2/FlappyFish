@@ -33,6 +33,7 @@ public class ScoreLineSpawnerBehaviour : SpawnPointBehaviour{
         {
             //Create one if there was not
             spawnedContainer = new GameObject(PARENT_NAME);
+            spawnedContainer.transform.parent = transform;
         }
     }
 }
