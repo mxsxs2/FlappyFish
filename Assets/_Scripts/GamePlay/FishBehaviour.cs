@@ -36,7 +36,7 @@ public class FishBehaviour : MonoBehaviour {
         ScreenBottom = Camera.main.ScreenToWorldPoint(Vector2.zero);
         //Get the renderer of the fish
         Renderer rend = GetComponent<Renderer>();
-        fishOffset = rend.bounds.size.y / 2;
+        fishOffset = rend.bounds.size.y / 2+0.2f;
 
     }
 	
@@ -74,10 +74,13 @@ public class FishBehaviour : MonoBehaviour {
         //Check if the fish is fallen out
         if (pos.y <= ScreenBottom.y + fishOffset)
         {
-            //Keep fish off at the bottom
-            transform.position = new Vector2(transform.position.x, ScreenBottom.y + fishOffset);
+            //The fish dies when touching the bottom
+            PublishFishCollisionEvent(FishCollisionEvents.FISHHIT);
+            //Reset fish back to the middle
+            transform.position = new Vector2(transform.position.x, 0);
             //Turn of gravity
             rb.gravityScale = 0f;
+            
         }
         else
         {

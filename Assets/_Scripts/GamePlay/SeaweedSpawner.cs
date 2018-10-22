@@ -42,7 +42,7 @@ public class SeaweedSpawner : SpawnPointBehaviour<Seaweed>
         Seaweed component = obj.GetComponent<Seaweed>();
         if (flipSeaweeds) component.flipUpsideDown = true;
         //Set size
-        component.baseLength = (screenTop.y - screenBottom.y) - 1.99f + (flipSeaweeds ? GetVerticalGap() * -1 : GetVerticalGap());
+        component.baseLength = (screenTop.y - screenBottom.y) - 2 + (flipSeaweeds ? GetVerticalGap() * -1 : GetVerticalGap());
     }
 
     protected override void CreateSpawnerContainer()
