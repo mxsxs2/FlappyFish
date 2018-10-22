@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SpawnPointBehaviour : MonoBehaviour {
+public abstract class SpawnPointBehaviour<T> : MonoBehaviour {
 
     [SerializeField]
     protected GameObject spawnablePrefab;
@@ -47,5 +47,29 @@ public abstract class SpawnPointBehaviour : MonoBehaviour {
         //Get gap field from parent
         GamePlayBehaviour behaviour = GameObject.Find("GamePlay").GetComponent<GamePlayBehaviour>();
         return behaviour.GetHorizontalGap();
+    }
+
+    /// <summary>
+    /// Removes every item form the parent container
+    /// </summary>
+    protected void RemoveSpawnedItems()
+    {
+        //Loop the children
+        foreach(Transform child in spawnedContainer.transform)
+        {
+            //If child is the given type
+            if(!child.gameObject.GetComponent<T>().Equals(null))
+                //Destroy child
+                Destroy(child.gameObject);
+        }
+    }
+
+    private void OnEnable()
+    {
+        GamePlayBehaviour.ResetGameEvent += RemoveSpawnedItems;
+    }
+    private void OnDisable()
+    {
+        GamePlayBehaviour.ResetGameEvent -= RemoveSpawnedItems;
     }
 }

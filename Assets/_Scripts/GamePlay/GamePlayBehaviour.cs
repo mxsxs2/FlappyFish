@@ -11,12 +11,17 @@ public class GamePlayBehaviour : MonoBehaviour
     [Range(1, 10)]
     //The scrolling speed of the game between 1 and 10
     private int gameSpeed = 2;
+    //The original game speed
+    private int originalGameSpeed;
     [SerializeField]
     //The spawnerparent game object
     private GameObject spawnerParent;
     [SerializeField]
     //Game score
     private int gameScore = 0;
+    [SerializeField]
+    //Score text
+    private Text scoreTextField;
     //Hoizontal gap between spawning
     private Dictionary<int, float> horizontalGaps;
 
@@ -24,6 +29,10 @@ public class GamePlayBehaviour : MonoBehaviour
     public delegate void GameSpeedChange(int speed);
     //GameSpeedChange event collision event
     public static GameSpeedChange GameSpeedChangeEvent;
+    //ResetGameEvent handlers
+    public delegate void ResetGame();
+    //GameSpeedChange event collision event
+    public static ResetGame ResetGameEvent;
 
     void Awake()
     {
@@ -46,13 +55,8 @@ public class GamePlayBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-  
+        //Set the original game speed
+        originalGameSpeed = gameSpeed;
     }
 
     //Return the game speed
@@ -61,6 +65,15 @@ public class GamePlayBehaviour : MonoBehaviour
         return gameSpeed;
     }
 
+    //Set the game score
+    private void SetGameScore(int score)
+    {
+        //Set the score
+        gameScore = score;
+        //Add score to score text
+        scoreTextField.text = "Score: " + gameScore;
+        Debug.Log("Score: " + gameScore);
+    }
 
     private void OnEnable()
     {
@@ -80,11 +93,8 @@ public class GamePlayBehaviour : MonoBehaviour
         //Check if its a score hit
         if (e == FishBehaviour.FishCollisionEvents.SCOREHIT)
         {
-            //Increase score
-            gameScore += 1;
-            //Add score to score text
-            GameObject.Find("Score").GetComponent<Text>().text = "Score: "+gameScore;
-            Debug.Log("Score: " + gameScore);
+            //Set the game score
+            SetGameScore(gameScore + 1);
             //Check if score can should be increased
             if(gameScore%10==0 && gameSpeed < 11)
             {
@@ -92,14 +102,31 @@ public class GamePlayBehaviour : MonoBehaviour
                 gameSpeed += 1;
                 PublishGameSpeedChange();
             }
+        }else if(e== FishBehaviour.FishCollisionEvents.FISHHIT) {
+            //Get the screen control
+            ScreenControl screenControl=GameObject.Find(ScreenControl.gameObjectName).GetComponent<ScreenControl>();
+            //Set the score for the finish menu
+            screenControl.GetScreen(ScreenControl.SCREENS.FinishMenu).GetComponent<FinishMenuControl>().SetGameScore(gameScore);
+            //Reset the game play
+            ResetGamePlay();
+            //Enable the finish menu screen
+            screenControl.EnableScreen(ScreenControl.SCREENS.FinishMenu);
+            
         }
     }
 
+    /// <summary>
+    /// Returns the gap between two items
+    /// </summary>
+    /// <returns></returns>
     public float GetHorizontalGap()
     {
         return horizontalGaps[gameSpeed];
     }
 
+    /// <summary>
+    /// Publishes the game speed change event
+    /// </summary>
     private void PublishGameSpeedChange()
     {
         if (GameSpeedChangeEvent != null)
@@ -107,6 +134,29 @@ public class GamePlayBehaviour : MonoBehaviour
             GameSpeedChangeEvent(gameSpeed);
         }
 
+    }
+
+    /// <summary>
+    /// Publishes the reset game event
+    /// </summary>
+    private void PublishResetGame()
+    {
+        if (ResetGameEvent != null)
+        {
+            ResetGameEvent();
+        }
+
+    }
+
+    /// <summary>
+    /// Resets the game play
+    /// </summary>
+    public void ResetGamePlay()
+    {
+        gameSpeed = originalGameSpeed;
+        SetGameScore(0);
+        PublishGameSpeedChange();
+        PublishResetGame();
     }
 
 }

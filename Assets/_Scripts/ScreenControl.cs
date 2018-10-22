@@ -13,7 +13,8 @@ public class ScreenControl : MonoBehaviour {
     {
         GamePlay,
         MainMenu,
-        PauseMenu
+        PauseMenu,
+        FinishMenu
     }
 
     //A dictionary of all availabe screenes

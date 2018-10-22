@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreLineSpawnerBehaviour : SpawnPointBehaviour{
+public class ScoreLineSpawnerBehaviour : SpawnPointBehaviour<ScoreLineBehaviour>{
 
     private const string PARENT_NAME = "ScoreLines";
   

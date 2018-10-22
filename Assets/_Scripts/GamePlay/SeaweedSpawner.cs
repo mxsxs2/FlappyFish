@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeaweedSpawner : SpawnPointBehaviour
+public class SeaweedSpawner : SpawnPointBehaviour<Seaweed>
 {
 
     private const string PARENT_NAME = "Seaweeds";
