@@ -11,7 +11,7 @@ public class SeaweedSpawnPointsBehaviour : MonoBehaviour {
     private int previousRandom;
     //Random number exclusion
     private int[] exclude = { -1, 0, 1 };
-    	
+
 	// Update is called once per frame
 	void Update () {
         //If both spawner took the number. Generate a new one and reset cunter.
@@ -45,4 +45,7 @@ public class SeaweedSpawnPointsBehaviour : MonoBehaviour {
         usageCounter += 1;
         return previousRandom;
     }
+
 }
+
+

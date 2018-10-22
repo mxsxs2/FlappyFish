@@ -9,6 +9,9 @@ public class SeaweedSpawner : SpawnPointBehaviour<Seaweed>
     private const string SPAWNER_PARENT = "SeaweedSpawners";
     [SerializeField]
     private bool flipSeaweeds = false;
+    [SerializeField]
+    //FishObject
+    private FishBehaviour fish;
     //Get the screen boundaries
     private Vector2 screenTop;
     private Vector2 screenBottom;
@@ -36,10 +39,10 @@ public class SeaweedSpawner : SpawnPointBehaviour<Seaweed>
         //Set scrolling speed
         obj.GetComponent<Scrolling>().scrollingSpeed = GetNewScrollSpeed();
         //Flip the seaweed if needed
-        Seaweed component= obj.GetComponent<Seaweed>();
+        Seaweed component = obj.GetComponent<Seaweed>();
         if (flipSeaweeds) component.flipUpsideDown = true;
         //Set size
-        component.baseLength = (screenTop.y-screenBottom.y)-2 + (flipSeaweeds ? GetVerticalGap() * -1 : GetVerticalGap());
+        component.baseLength = (screenTop.y - screenBottom.y) - 1.99f + (flipSeaweeds ? GetVerticalGap() * -1 : GetVerticalGap());
     }
 
     protected override void CreateSpawnerContainer()

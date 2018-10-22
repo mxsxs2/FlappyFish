@@ -39,8 +39,6 @@ public class Seaweed : MonoBehaviour
         //Set gradient
         lineRenderer.colorGradient = gradient;
 
-
-
         //Get the collider
         polygonCollider = lineRenderer.gameObject.AddComponent<PolygonCollider2D>();
         polygonCollider.isTrigger = true;
