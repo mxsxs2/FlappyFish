@@ -10,7 +10,17 @@ public class StartUpScript : MonoBehaviour {
     {
         //Get the screen control
         screensControl = GameObject.Find(ScreenControl.gameObjectName).GetComponent<ScreenControl>();
-        //Enable main menu
-        screensControl.EnableScreen(ScreenControl.SCREENS.MainMenu);
+
+        //Check if the username is set. If not the show the panel and hide buttons panel
+        if (PlayerPrefs.GetString("username").Equals(""))
+        {
+            //Enable main menu
+            screensControl.EnableScreen(ScreenControl.SCREENS.UsernameMenu);
+        }
+        else
+        {
+            //Switch to username menu
+            screensControl.EnableScreen(ScreenControl.SCREENS.MainMenu);
+        }
     }
 }

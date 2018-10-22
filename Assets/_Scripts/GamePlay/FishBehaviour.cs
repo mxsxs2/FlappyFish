@@ -36,7 +36,7 @@ public class FishBehaviour : MonoBehaviour {
         ScreenBottom = Camera.main.ScreenToWorldPoint(Vector2.zero);
         //Get the renderer of the fish
         Renderer rend = GetComponent<Renderer>();
-        fishOffset = rend.bounds.size.y / 2+0.2f;
+        fishOffset = rend.bounds.size.y / 2;
 
     }
 	

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ScreenControl : MonoBehaviour {
@@ -14,14 +15,16 @@ public class ScreenControl : MonoBehaviour {
         GamePlay,
         MainMenu,
         PauseMenu,
-        FinishMenu
+        FinishMenu,
+        SettingsMenu,
+        UsernameMenu
     }
 
     //A dictionary of all availabe screenes
     private IDictionary<SCREENS, GameObject> allScreenes = new Dictionary<SCREENS, GameObject>();
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         //Init screen dictionary
         InitScreenDictionary();
 	}
@@ -51,10 +54,12 @@ public class ScreenControl : MonoBehaviour {
         {
             if (e.Key == screen)
             {
+                Debug.Log("Show: " + screen.ToString("g"));
                 e.Value.SetActive(true);
             }
             else
             {
+                Debug.Log("Hide: " + e.Key);
                 e.Value.SetActive(false);
             }
         }
