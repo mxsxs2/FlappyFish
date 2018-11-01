@@ -38,14 +38,14 @@ public abstract class SpawnPointBehaviour<T> : MonoBehaviour {
     protected float GetNewScrollSpeed()
     {
         //Get game speed
-        GamePlayBehaviour behaviour = GameObject.Find("GamePlay").GetComponent<GamePlayBehaviour>();
+        GamePlayBehaviour behaviour = GameObject.Find(Const.gamePlayGameObject).GetComponent<GamePlayBehaviour>();
         return behaviour.GetGameSpeed();
     }
 
     protected float GetHorizontalGap()
     {
         //Get gap field from parent
-        GamePlayBehaviour behaviour = GameObject.Find("GamePlay").GetComponent<GamePlayBehaviour>();
+        GamePlayBehaviour behaviour = GameObject.Find(Const.gamePlayGameObject).GetComponent<GamePlayBehaviour>();
         return behaviour.GetHorizontalGap();
     }
 

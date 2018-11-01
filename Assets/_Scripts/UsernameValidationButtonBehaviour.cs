@@ -27,7 +27,7 @@ public class UsernameValidationButtonBehaviour : MonoBehaviour
     private void Init()
     {
         //Get the screen control
-        screensControl = GameObject.Find(ScreenControl.gameObjectName).GetComponent<ScreenControl>();
+        screensControl = GameObject.Find(Const.screenGameObject).GetComponent<ScreenControl>();
         AddClickListener(EnableScreenOnClick);
     }
 

@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class GamePlayBehaviour : MonoBehaviour
 {
-    private const string SEAWEED_PARENT_NAME = "Seaweeds";
-
     [SerializeField]
     [Range(1, 10)]
     //The scrolling speed of the game between 1 and 10
@@ -22,9 +20,6 @@ public class GamePlayBehaviour : MonoBehaviour
     [SerializeField]
     //Score text
     private Text scoreTextField;
-    //Hoizontal gap between spawning
-    private Dictionary<int, float> horizontalGaps;
-
     //GameSpeedChangeEvent handlers
     public delegate void GameSpeedChange(int speed);
     //GameSpeedChange event collision event
@@ -33,24 +28,6 @@ public class GamePlayBehaviour : MonoBehaviour
     public delegate void ResetGame();
     //GameSpeedChange event collision event
     public static ResetGame ResetGameEvent;
-
-    void Awake()
-    {
-        //Map the speed to the gap. Tryed to keep kind of even.
-        horizontalGaps = new Dictionary<int, float>
-        {
-            { 1, 4 },
-            { 2, 2.8f },
-            { 3, 2 },
-            { 4, 1.7f },
-            { 5, 1.4f },
-            { 6, 1.1f },
-            { 7, 0.9f },
-            { 8, 0.8f },
-            { 9, 0.7f },
-            { 10, 0.6f }
-        };
-    }
 
     // Use this for initialization
     void Start()
@@ -71,7 +48,7 @@ public class GamePlayBehaviour : MonoBehaviour
         //Set the score
         gameScore = score;
         //Add score to score text
-        scoreTextField.text = "Score: " + gameScore;
+        scoreTextField.text = Const.scoreText + gameScore;
     }
 
     private void OnEnable()
@@ -103,7 +80,7 @@ public class GamePlayBehaviour : MonoBehaviour
             }
         }else if(e== FishBehaviour.FishCollisionEvents.FISHHIT) {
             //Get the screen control
-            ScreenControl screenControl=GameObject.Find(ScreenControl.gameObjectName).GetComponent<ScreenControl>();
+            ScreenControl screenControl=GameObject.Find(Const.screenGameObject).GetComponent<ScreenControl>();
             //Set the score for the finish menu
             screenControl.GetScreen(ScreenControl.SCREENS.FinishMenu).GetComponent<FinishMenuControl>().SetGameScore(gameScore);
             //Reset the game play
@@ -120,7 +97,7 @@ public class GamePlayBehaviour : MonoBehaviour
     /// <returns></returns>
     public float GetHorizontalGap()
     {
-        return horizontalGaps[gameSpeed];
+        return Const.seaweedHorizonalGap[gameSpeed];
     }
 
     /// <summary>

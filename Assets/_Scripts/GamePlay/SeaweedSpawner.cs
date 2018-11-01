@@ -5,8 +5,6 @@ using UnityEngine;
 public class SeaweedSpawner : SpawnPointBehaviour<Seaweed>
 {
 
-    private const string PARENT_NAME = "Seaweeds";
-    private const string SPAWNER_PARENT = "SeaweedSpawners";
     [SerializeField]
     private bool flipSeaweeds = false;
     [SerializeField]
@@ -48,12 +46,12 @@ public class SeaweedSpawner : SpawnPointBehaviour<Seaweed>
     protected override void CreateSpawnerContainer()
     {
         //Check if there is a parent object
-        spawnedContainer = GameObject.Find(PARENT_NAME);
+        spawnedContainer = GameObject.Find(Const.seaweedParentName);
         if (!spawnedContainer)
         {
             //Create one if there was not
-            spawnedContainer = new GameObject(PARENT_NAME);
-            spawnedContainer.transform.parent = GameObject.Find(SPAWNER_PARENT).transform;
+            spawnedContainer = new GameObject(Const.seaweedParentName);
+            spawnedContainer.transform.parent = GameObject.Find(Const.seaweedSpawnerGameObject).transform;
         }
     }
 
@@ -64,7 +62,7 @@ public class SeaweedSpawner : SpawnPointBehaviour<Seaweed>
     private float GetVerticalGap()
     {
         //Get gap field from parent
-        SeaweedSpawnPointsBehaviour behaviour = GameObject.Find(SPAWNER_PARENT).GetComponent<SeaweedSpawnPointsBehaviour>();
+        SeaweedSpawnPointsBehaviour behaviour = GameObject.Find(Const.seaweedSpawnerGameObject).GetComponent<SeaweedSpawnPointsBehaviour>();
         return behaviour.GetRandomVerticalGap();
     }
 

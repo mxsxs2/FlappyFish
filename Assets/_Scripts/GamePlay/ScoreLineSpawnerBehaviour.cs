@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreLineSpawnerBehaviour : SpawnPointBehaviour<ScoreLineBehaviour>{
-
-    private const string PARENT_NAME = "ScoreLines";
   
     // Use this for initialization
     void Start()
@@ -28,11 +26,11 @@ public class ScoreLineSpawnerBehaviour : SpawnPointBehaviour<ScoreLineBehaviour>
     protected override void CreateSpawnerContainer()
     {
         //Check if there is a parent object
-        spawnedContainer = GameObject.Find(PARENT_NAME);
+        spawnedContainer = GameObject.Find(Const.scoreLinesParentName);
         if (!spawnedContainer)
         {
             //Create one if there was not
-            spawnedContainer = new GameObject(PARENT_NAME);
+            spawnedContainer = new GameObject(Const.scoreLinesParentName);
             spawnedContainer.transform.parent = transform;
         }
     }

@@ -16,7 +16,7 @@ public class SoundToggleBehaviour : MonoBehaviour {
         //Add the event listener
         toggle.onValueChanged.AddListener((value)=>{
             //Set the new preference
-            PlayerPrefs.SetInt("sound", Convert.ToInt32(value));
+            PlayerPrefs.SetInt(Const.sound, Convert.ToInt32(value));
             //Turn audio on or off
             AudioListener.pause = !value;
         });
@@ -28,6 +28,6 @@ public class SoundToggleBehaviour : MonoBehaviour {
     void OnEnable()
     {
         //Set the username if there is any
-        toggle.isOn = PlayerPrefs.GetInt("sound")==1;
+        toggle.isOn = PlayerPrefs.GetInt(Const.sound) ==1;
     }
 }

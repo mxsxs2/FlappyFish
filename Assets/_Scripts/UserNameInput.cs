@@ -20,7 +20,7 @@ public class UserNameInput : MonoBehaviour
         //Get input field
         input = gameObject.GetComponent<InputField>();
         //Set the username if there is any
-        input.text = PlayerPrefs.GetString("username");
+        input.text = PlayerPrefs.GetString(Const.username);
         //Create a new submit event
         InputField.SubmitEvent se = new InputField.SubmitEvent();
         //Add listener
@@ -31,7 +31,7 @@ public class UserNameInput : MonoBehaviour
             {
                 lengthErrorMessage.SetActive(false);
                 //Update the username
-                PlayerPrefs.SetString("username", v);
+                PlayerPrefs.SetString(Const.username, v);
             }
             else
             {
@@ -53,6 +53,6 @@ public class UserNameInput : MonoBehaviour
     void OnEnable()
     {
         //Set the username if there is any
-        input.text = PlayerPrefs.GetString("username");
+        input.text = PlayerPrefs.GetString(Const.username);
     }
 }

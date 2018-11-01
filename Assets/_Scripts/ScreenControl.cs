@@ -5,10 +5,6 @@ using System.Linq;
 using UnityEngine;
 
 public class ScreenControl : MonoBehaviour {
-
-    //The name of the game object this scrript should be attached to 
-    public const string gameObjectName="Screens";
-
     //Type with the screen names
     public enum SCREENS
     {
