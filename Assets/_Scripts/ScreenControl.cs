@@ -54,12 +54,12 @@ public class ScreenControl : MonoBehaviour {
         {
             if (e.Key == screen)
             {
-                Debug.Log("Show: " + screen.ToString("g"));
+                //Debug.Log("Show: " + screen.ToString("g"));
                 e.Value.SetActive(true);
             }
             else
             {
-                Debug.Log("Hide: " + e.Key);
+                //Debug.Log("Hide: " + e.Key);
                 e.Value.SetActive(false);
             }
         }

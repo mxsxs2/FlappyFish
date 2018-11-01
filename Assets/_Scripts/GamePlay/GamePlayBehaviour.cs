@@ -72,7 +72,6 @@ public class GamePlayBehaviour : MonoBehaviour
         gameScore = score;
         //Add score to score text
         scoreTextField.text = "Score: " + gameScore;
-        Debug.Log("Score: " + gameScore);
     }
 
     private void OnEnable()
