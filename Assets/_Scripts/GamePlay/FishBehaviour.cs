@@ -19,13 +19,16 @@ public class FishBehaviour : MonoBehaviour {
     private float originalGvaity;
     //Offset of fish
     private float fishOffset;
-    
     //FishCollisionEvent handlers
     public delegate void FishCollision(FishCollisionEvents e);
     //Fish collision event
     public static FishCollision FishCollisionEvent;
+    //The original position of the fish
+    public Vector2 originalPosition;
 
     void Start () {
+        //Save the original position
+        originalPosition = transform.position;
         // Get the current object
         rb = GetComponent<Rigidbody2D>();
         //Get the original gravity
@@ -96,6 +99,8 @@ public class FishBehaviour : MonoBehaviour {
         if (seaweed)
         {
             PublishFishCollisionEvent(FishCollisionEvents.FISHHIT);
+            //The fish dies when the fish is hit so the original position can set 
+            transform.position = originalPosition;
             return;
         }
         var score = collision.GetComponent<ScoreLineBehaviour>();

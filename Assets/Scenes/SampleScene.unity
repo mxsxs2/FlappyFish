@@ -950,7 +950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &362728657
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2313,7 +2313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 5
-  tileSizeZ: 0
 --- !u!1 &828063842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1203799696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3431,7 +3430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1493466067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3962,7 +3961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1617530363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4662,6 +4661,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 212557638480379520, guid: bf8b6bc64214ac14d8b5a660b93cd699,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf8b6bc64214ac14d8b5a660b93cd699, type: 2}
   m_IsPrefabAsset: 0
@@ -4926,3 +4930,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreTextComponent: {fileID: 1276256074}
+  highScoreTextComponent: {fileID: 511132544}
