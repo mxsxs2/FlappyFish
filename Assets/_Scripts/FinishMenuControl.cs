@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FinishMenuControl : MonoBehaviour {
+public class FinishMenuControl : MonoBehaviour
+{
 
 
     [SerializeField]
@@ -51,6 +52,7 @@ public class FinishMenuControl : MonoBehaviour {
     /// <param name="score"></param>
     private void setHighScore(int score)
     {
-        if (score < getHighScore()) PlayerPrefs.SetInt(Const.highScore, score);
+
+        if (score > getHighScore()) PlayerPrefs.SetInt(Const.highScore, score);
     }
 }

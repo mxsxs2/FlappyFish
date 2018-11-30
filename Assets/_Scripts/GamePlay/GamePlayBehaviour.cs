@@ -12,14 +12,14 @@ public class GamePlayBehaviour : MonoBehaviour
     //The original game speed
     private int originalGameSpeed;
     [SerializeField]
-    //The spawnerparent game object
-    private GameObject spawnerParent;
-    [SerializeField]
     //Game score
     private int gameScore = 0;
     [SerializeField]
     //Score text
     private Text scoreTextField;
+    [SerializeField]
+    //Score text
+    private Text highScoreTextField;
     //GameSpeedChangeEvent handlers
     public delegate void GameSpeedChange(int speed);
     //GameSpeedChange event collision event
@@ -34,6 +34,8 @@ public class GamePlayBehaviour : MonoBehaviour
     {
         //Set the original game speed
         originalGameSpeed = gameSpeed;
+        //Set the high score text
+        highScoreTextField.text = Const.highScoreText + PlayerPrefs.GetInt(Const.highScore);
     }
 
     //Return the game speed
@@ -54,6 +56,8 @@ public class GamePlayBehaviour : MonoBehaviour
     private void OnEnable()
     {
         FishBehaviour.FishCollisionEvent += HandleFishCollision;
+        //Set the high score text
+        highScoreTextField.text = Const.highScoreText + PlayerPrefs.GetInt(Const.highScore);
     }
     private void OnDisable()
     {
@@ -72,22 +76,24 @@ public class GamePlayBehaviour : MonoBehaviour
             //Set the game score
             SetGameScore(gameScore + 1);
             //Check if score can should be increased
-            if(gameScore%10==0 && gameSpeed < 11)
+            if (gameScore % 10 == 0 && gameSpeed < 11)
             {
                 //Increase the speed
                 gameSpeed += 1;
                 PublishGameSpeedChange();
             }
-        }else if(e== FishBehaviour.FishCollisionEvents.FISHHIT) {
+        }
+        else if (e == FishBehaviour.FishCollisionEvents.FISHHIT)
+        {
             //Get the screen control
-            ScreenControl screenControl=GameObject.Find(Const.screenGameObject).GetComponent<ScreenControl>();
+            ScreenControl screenControl = GameObject.Find(Const.screenGameObject).GetComponent<ScreenControl>();
             //Set the score for the finish menu
             screenControl.GetScreen(ScreenControl.SCREENS.FinishMenu).GetComponent<FinishMenuControl>().SetGameScore(gameScore);
             //Reset the game play
             ResetGamePlay();
             //Enable the finish menu screen
             screenControl.EnableScreen(ScreenControl.SCREENS.FinishMenu);
-            
+
         }
     }
 

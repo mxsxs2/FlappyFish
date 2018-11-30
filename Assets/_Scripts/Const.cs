@@ -20,12 +20,13 @@ public class Const
 
     //Texts
     public static string scoreText = "Score: ";
+    public static string highScoreText = "High Score: ";
     public static string yourScoreText = "Your score is: ";
     public static string newHighScoreText = "New High Score!";
 
 
     //Predefined horizontal gaps
-    public static Dictionary<int, float> seaweedHorizonalGap= new Dictionary<int, float>
+    public static Dictionary<int, float> seaweedHorizonalGap = new Dictionary<int, float>
         {
             { 1, 4 },
             { 2, 2.8f },
