@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class FishBehaviour : MonoBehaviour {
+public class FishBehaviour : MonoBehaviour
+{
     public enum FishCollisionEvents
     {
         FISHHIT,
@@ -23,12 +24,9 @@ public class FishBehaviour : MonoBehaviour {
     public delegate void FishCollision(FishCollisionEvents e);
     //Fish collision event
     public static FishCollision FishCollisionEvent;
-    //The original position of the fish
-    public Vector2 originalPosition;
 
-    void Start () {
-        //Save the original position
-        originalPosition = transform.position;
+    void Start()
+    {
         // Get the current object
         rb = GetComponent<Rigidbody2D>();
         //Get the original gravity
@@ -42,10 +40,13 @@ public class FishBehaviour : MonoBehaviour {
         fishOffset = rend.bounds.size.y / 2;
 
     }
-	
-	void FixedUpdate () {
+
+    void FixedUpdate()
+    {
+
         //Get current position
         Vector3 pos = transform.position;
+        transform.position = new Vector3(pos.x, pos.y, 0);
         //Check if the fish is within boundaries and act on if not
         CheckBottomBoundary(pos);
         CheckTopBoundary(pos);
@@ -54,12 +55,12 @@ public class FishBehaviour : MonoBehaviour {
     void CheckTopBoundary(Vector3 pos)
     {
         //Check if the fish is jumping out
-        if (pos.y > screenTop.y- fishOffset)
+        if (pos.y > screenTop.y - fishOffset)
         {
             //Kill the upward foce
-            rb.velocity = Vector2.zero;
+            rb.velocity = Vector3.zero;
             //Dont let the fish go out of the sceen
-            transform.position = new Vector2(transform.position.x, screenTop.y- fishOffset);
+            transform.position = new Vector3(transform.position.x, screenTop.y - fishOffset, 0);
             //Turn jumping off
             var jumping = GetComponent<Jumping>();
             jumping.enabled = false;
@@ -80,10 +81,10 @@ public class FishBehaviour : MonoBehaviour {
             //The fish dies when touching the bottom
             PublishFishCollisionEvent(FishCollisionEvents.FISHHIT);
             //Reset fish back to the middle
-            transform.position = new Vector2(transform.position.x, 0);
+            transform.position = new Vector3(transform.position.x, 0, 0);
             //Turn of gravity
             rb.gravityScale = 0f;
-            
+
         }
         else
         {
@@ -99,8 +100,7 @@ public class FishBehaviour : MonoBehaviour {
         if (seaweed)
         {
             PublishFishCollisionEvent(FishCollisionEvents.FISHHIT);
-            //The fish dies when the fish is hit so the original position can set 
-            transform.position = originalPosition;
+
             return;
         }
         var score = collision.GetComponent<ScoreLineBehaviour>();

@@ -42,7 +42,7 @@ public class Jumping : MonoBehaviour {
         {
             
             //Reset the velocity so the force is never adde more than once a.k.a the fish not going to go mad high on quick space press
-            rb.velocity = Vector2.zero;
+            rb.velocity = Vector3.zero;
             //Add upwards force
             rb.AddForce(transform.up * velocity);
             jump = false;

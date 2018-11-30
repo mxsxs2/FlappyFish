@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114026389856659796}
   - component: {fileID: 50596370456924012}
   - component: {fileID: 114651350676795220}
-  - component: {fileID: 114732231058170400}
   - component: {fileID: 60457834512409618}
   - component: {fileID: 82768308983367254}
   m_Layer: 0
@@ -341,18 +340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238a3d1496d6ac54d90f4a9efa8cda6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114732231058170400
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1257724843269054}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424fdd9f3604b844bb41a73fe8d12b12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
 --- !u!212 &212557638480379520
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -387,7 +374,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: e7bf6fa89e3920d49a89acf30107f762, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -414,6 +401,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 0}
+  m_AnchoredPosition: {x: -100, y: 0}
   m_SizeDelta: {x: 5.12, y: 5.12}
   m_Pivot: {x: 0.5, y: 0.5}
