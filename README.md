@@ -28,7 +28,7 @@ An event is published after every 10th score line to notify the scrolling items 
 Every static string and setting is stored in `Const` file for convenience.
 
 ## Test
-The game was given to a number of people to check if there are any bugs in the game or crashes.
+The game was given to a number of people to play and check if there are any bugs in the game or crashes. The result of the "black box" testing:
 * Test person one: _The fish jumps too much_
     * Action taken: The fish's jumping velocity has been reduced
 * Test person two: _The fish s almost the same colour as the background_
