@@ -45,6 +45,10 @@ Send screen shots of the game and the game to the client. In the same e-mail exp
 
 Start looking into unit tests.
 
+Could not write unit tests as the GameObject is always null.
+
+Did not receive feedback from client.
+
 ## Differences of the design document
 The design document did not mention menu, increasing difficulty, details of the score system, sounds and settings. 
 * I created a menu system. 

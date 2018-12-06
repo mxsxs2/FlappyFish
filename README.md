@@ -28,8 +28,14 @@ An event is published after every 10th score line to notify the scrolling items 
 Every static string and setting is stored in `Const` file for convenience.
 
 ## Test
-The game was given to a number of people to check if there are any bugs in the game or crashes. They did not report any issues with the game.
-
+The game was given to a number of people to check if there are any bugs in the game or crashes.
+* Test person one: _The fish jumps too much_
+    * Action taken: The fish's jumping velocity has been reduced
+* Test person two: _The fish s almost the same colour as the background_
+    * Action taken: None. I do not want to change the fish's colour
+* Test person three: _The fish disappears when a new game is started after the fish dies_
+    * Action taken: _Repositioned the fish to be visible all the time_
+* The other test people did not find any issues.
 
 ## Resources
 [Fish](https://www.google.ie/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwijqOni_fvdAhUrsqQKHSkMDbMQjhx6BAgBEAM&url=https%3A%2F%2Fbr.vexels.com%2Fpng-svg%2Fprevisualizar%2F143215%2Fdesenhos-animados-roxos-dos-peixes&psig=AOvVaw20goE1hj6kjL6bUrNleuuU&ust=1539264620982581)
